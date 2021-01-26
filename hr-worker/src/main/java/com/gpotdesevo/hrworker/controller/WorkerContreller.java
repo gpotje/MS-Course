@@ -3,7 +3,9 @@ package com.gpotdesevo.hrworker.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,21 +18,30 @@ import com.gpotdesevo.hrworker.repository.WorkerRepository;
 
 
 
-
-
-
-
 @RestController
 @RequestMapping(value = "/workers")
 public class WorkerContreller {
 
+	@Value("${test.config}")
+	private String testConfig;
+	
+	
 	@Autowired
 	private Environment env;
 	
-//	private static Logger logger = org.slf4j.LoggerFactory.getLogger(WorkerContreller.class);
+	private static Logger logger = org.slf4j.LoggerFactory.getLogger(WorkerContreller.class);
 	
 	@Autowired
 	private WorkerRepository workerRepository;
+	
+	@GetMapping(value = "/configs")
+	public ResponseEntity<Void> getConfig(){
+		//logger.info("CONFIG = " + env.getProperty("test.config"));
+		logger.info("CONFIG = " + testConfig);
+		return ResponseEntity.noContent().build();
+		
+	}
+	
 	
 	@GetMapping
 	public ResponseEntity<List<Worker>> findAll(){
