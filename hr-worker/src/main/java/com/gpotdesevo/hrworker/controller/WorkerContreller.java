@@ -21,10 +21,10 @@ import com.gpotdesevo.hrworker.repository.WorkerRepository;
 @RestController
 @RequestMapping(value = "/workers")
 public class WorkerContreller {
-
+		/*
 	@Value("${test.config}")
 	private String testConfig;
-	
+	*/
 	
 	@Autowired
 	private Environment env;
@@ -36,8 +36,8 @@ public class WorkerContreller {
 	
 	@GetMapping(value = "/configs")
 	public ResponseEntity<Void> getConfig(){
-		//logger.info("CONFIG = " + env.getProperty("test.config"));
-		logger.info("CONFIG = " + testConfig);
+		logger.info("CONFIG = " + env.getProperty("test.config"));
+		//logger.info("CONFIG = " + testConfig);
 		return ResponseEntity.noContent().build();
 		
 	}
