@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import org.apache.tomcat.jni.User;
 
 @Entity
-@Table(name = "tb_users")
+@Table(name = "tb_user")
 public class users  implements Serializable{
 
 	
@@ -31,7 +31,7 @@ public class users  implements Serializable{
 	private String  password;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_users_role",
+	@JoinTable(name = "tb_user_role",
 			joinColumns = @JoinColumn(name ="user_id"),
 			inverseJoinColumns =  @JoinColumn(name ="role_id")
 			)
