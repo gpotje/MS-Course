@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ import org.apache.tomcat.jni.User;
 
 @Entity
 @Table(name = "tb_user")
-public class users  implements Serializable{
+public class Users  implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -27,6 +28,8 @@ public class users  implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id ; 
 	private String name ;
+	
+	@Column(unique = true)
 	private String email;
 	private String  password;
 	
@@ -38,13 +41,13 @@ public class users  implements Serializable{
     private Set<Role>roles =  new HashSet<>();
 	
 	
-	public users() {
+	public Users() {
 		// TODO Auto-generated constructor stub
 	}
 
 	
 
-	public users(Long id, String name, String email, String password) {
+	public Users(Long id, String name, String email, String password) {
 		super();
 		this.id = id;
 		this.name = name;
